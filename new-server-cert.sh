@@ -27,20 +27,22 @@ string_mask			= nombstr
 req_extensions			= v3_req
 [ req_distinguished_name ]
 countryName			= Country Name (2 letter code)
-countryName_default		= MY
+countryName_default		= TW
 countryName_min			= 2
 countryName_max			= 2
 stateOrProvinceName		= State or Province Name (full name)
-stateOrProvinceName_default	= Perak
+stateOrProvinceName_default	= Taiwan
 localityName			= Locality Name (eg, city)
-localityName_default		= Sitiawan
+localityName_default		= Puli
 0.organizationName		= Organization Name (eg, company)
-0.organizationName_default	= My Directory Sdn Bhd
+0.organizationName_default	= Nation Chi Nan University
 organizationalUnitName		= Organizational Unit Name (eg, section)
-organizationalUnitName_default	= Secure Web Server
+organizationalUnitName_default	= Pearl Lab
 commonName			= Common Name (eg, www.domain.com)
+commonName_default  = www.pearl.lab
 commonName_max			= 64
 emailAddress			= Email Address
+emailAddress_default    = efficacy38@gmail.com
 emailAddress_max		= 40
 [ v3_req ]
 nsCertType			= server

@@ -7,7 +7,7 @@
 # Create the master CA key. This should be done once.
 if [ ! -f ca.key ]; then
 	echo "No Root CA key round. Generating one"
-	openssl genrsa -des3 -out ca.key 4096 -rand random-bits
+	openssl genrsa -des3 -out ca.key 4096
 	echo ""
 fi
 
@@ -35,6 +35,7 @@ localityName_default		= Puli
 organizationalUnitName		= Organizational Unit Name (eg, section)
 organizationalUnitName_default	= Pearl Lab
 commonName			= Common Name (eg, MD Root CA)
+commonName_default      = pearl.lab
 commonName_max			= 64
 emailAddress			= Email Address
 emailAddress_default    = efficacy38@gmail.com

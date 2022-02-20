@@ -4,6 +4,7 @@
 ##  Copyright (c) 2000 Yeak Nai Siew, All Rights Reserved. 
 ##
 
+# set -x
 CERT=$1
 if [ $# -ne 1 ]; then
         echo "Usage: $0 <www.domain.com>"
