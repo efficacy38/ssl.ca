@@ -15,39 +15,49 @@ fi
 CONFIG="root-ca.conf"
 cat >$CONFIG <<EOT
 [ req ]
-default_bits			= 4096
-default_keyfile			= ca.key
-distinguished_name		= req_distinguished_name
-x509_extensions			= v3_ca
-string_mask			= nombstr
-req_extensions			= v3_req
+default_bits					= 4096
+default_keyfile					= ca.key
+distinguished_name				= req_distinguished_name
+x509_extensions					= v3_ca
+string_mask			    		= nombstr
+
 [ req_distinguished_name ]
-countryName			= Country Name (2 letter code)
-countryName_default		= TW
-countryName_min			= 2
-countryName_max			= 2
-stateOrProvinceName		= State or Province Name (full name)
-stateOrProvinceName_default	= Taiwan
-localityName			= Locality Name (eg, city)
-localityName_default		= Puli
-0.organizationName		= Organization Name (eg, company)
-0.organizationName_default	= National Chi Nan University
-organizationalUnitName		= Organizational Unit Name (eg, section)
+countryName						= Country Name (2 letter code)
+countryName_default				= TW
+countryName_min					= 2
+countryName_max					= 2
+stateOrProvinceName				= State or Province Name (full name)
+stateOrProvinceName_default		= Taiwan
+localityName					= Locality Name (eg, city)
+localityName_default			= Puli
+0.organizationName				= Organization Name (eg, company)
+0.organizationName_default		= National Chi Nan University
+organizationalUnitName			= Organizational Unit Name (eg, section)
 organizationalUnitName_default	= Pearl Lab
-commonName			= Common Name (eg, MD Root CA)
-commonName_default      = pearl.lab
-commonName_max			= 64
-emailAddress			= Email Address
-emailAddress_default    = efficacy38@gmail.com
-emailAddress_max		= 40
+commonName						= Common Name (eg, MD Root CA)
+commonName_default				= pearl.lab
+commonName_max					= 64
+emailAddress					= Email Address
+emailAddress_default    		= efficacy38@gmail.com
+emailAddress_max				= 40
+
 [ v3_ca ]
 basicConstraints		= critical,CA:true
 subjectKeyIdentifier		= hash
 [ v3_req ]
+basicConstraints    = CA:TRUE
 nsCertType			= objsign,email,server
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = home
+DNS.2 = *.home
+DNS.3 = *.pearl.lab
 EOT
+# authorityKeyIdentifier get error
+# if authorityKeyIdentifier = keyid:always
+# ref https://stackoverflow.com/questions/19163484/adding-authoritykeyidentifier-to-a-certrequest
 
 echo "Self-sign the root CA..."
-openssl req -new -x509 -days 3650 -config $CONFIG -key ca.key -out ca.crt
+openssl req -new -x509 -days 3650 -config $CONFIG -key ca.key -out ca.crt # -extensions v3_req
 
 rm -f $CONFIG

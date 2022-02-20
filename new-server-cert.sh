@@ -20,23 +20,23 @@ fi
 CONFIG="server-cert.conf"
 cat >$CONFIG <<EOT
 [ req ]
-default_bits			= 4096
-default_keyfile			= server.key
-distinguished_name		= req_distinguished_name
-string_mask			= nombstr
-req_extensions			= v3_req
+default_bits					= 4096
+default_keyfile					= server.key
+distinguished_name				= req_distinguished_name
+string_mask						= nombstr
+
 [ req_distinguished_name ]
-countryName			= Country Name (2 letter code)
-countryName_default		= TW
-countryName_min			= 2
-countryName_max			= 2
-stateOrProvinceName		= State or Province Name (full name)
-stateOrProvinceName_default	= Taiwan
-localityName			= Locality Name (eg, city)
-localityName_default		= Puli
-0.organizationName		= Organization Name (eg, company)
-0.organizationName_default	= Nation Chi Nan University
-organizationalUnitName		= Organizational Unit Name (eg, section)
+countryName						= Country Name (2 letter code)
+countryName_default				= TW
+countryName_min					= 2
+countryName_max					= 2
+stateOrProvinceName				= State or Province Name (full name)
+stateOrProvinceName_default		= Taiwan
+localityName					= Locality Name (eg, city)
+localityName_default			= Puli
+0.organizationName				= Organization Name (eg, company)
+0.organizationName_default		= Nation Chi Nan University
+organizationalUnitName			= Organizational Unit Name (eg, section)
 organizationalUnitName_default	= Pearl Lab
 commonName			= Common Name (eg, www.domain.com)
 commonName_default  = www.pearl.lab
@@ -45,8 +45,13 @@ emailAddress			= Email Address
 emailAddress_default    = efficacy38@gmail.com
 emailAddress_max		= 40
 [ v3_req ]
-nsCertType			= server
-basicConstraints		= critical,CA:false
+basicConstraints = CA:TRUE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = home
+DNS.2 = *.home
+DNS.3 = *.pearl.lab
 EOT
 
 echo "Fill in certificate data"

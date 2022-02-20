@@ -50,8 +50,9 @@ default_days            = 365
 default_crl_days        = 30
 default_md              = sha256
 preserve                = no
-x509_extensions		= server_cert
+x509_extensions		    = server_cert
 policy                  = policy_anything
+
 [ policy_anything ]
 countryName             = optional
 stateOrProvinceName     = optional
@@ -60,12 +61,23 @@ organizationName        = optional
 organizationalUnitName  = optional
 commonName              = supplied
 emailAddress            = optional
+
 [ server_cert ]
 #subjectKeyIdentifier	= hash
 authorityKeyIdentifier	= keyid:always
 extendedKeyUsage	= serverAuth,clientAuth,msSGC,nsSGC
 basicConstraints	= critical,CA:false
+[ v3_req ]
+basicConstraints    = CA:TRUE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = home
+DNS.2 = *.home
+DNS.3 = *.pearl.lab
 EOT
+# server_cert
+# basicConstraints	= critical,CA:false
 
 #  sign the certificate
 echo "CA signing: $CERT.csr -> $CERT.crt:"
