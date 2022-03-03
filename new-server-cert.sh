@@ -38,20 +38,12 @@ localityName_default			= Puli
 0.organizationName_default		= Nation Chi Nan University
 organizationalUnitName			= Organizational Unit Name (eg, section)
 organizationalUnitName_default	= Pearl Lab
-commonName			= Common Name (eg, www.domain.com)
-commonName_default  = www.pearl.lab
-commonName_max			= 64
-emailAddress			= Email Address
-emailAddress_default    = efficacy38@gmail.com
-emailAddress_max		= 40
-[ v3_req ]
-basicConstraints = CA:TRUE
-keyUsage = nonRepudiation, digitalSignature, keyEncipherment
-subjectAltName = @alt_names
-[alt_names]
-DNS.1 = home
-DNS.2 = *.home
-DNS.3 = *.pearl.lab
+commonName						= Common Name (eg, www.domain.com)
+commonName_default				= www.pearl.lab
+commonName_max					= 64
+emailAddress					= Email Address
+emailAddress_default    		= efficacy38@gmail.com
+emailAddress_max				= 40
 EOT
 
 echo "Fill in certificate data"

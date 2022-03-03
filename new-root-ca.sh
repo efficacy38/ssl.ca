@@ -42,22 +42,15 @@ emailAddress_default    		= efficacy38@gmail.com
 emailAddress_max				= 40
 
 [ v3_ca ]
-basicConstraints		= critical,CA:true
-subjectKeyIdentifier		= hash
-[ v3_req ]
-basicConstraints    = CA:TRUE
-nsCertType			= objsign,email,server
-subjectAltName = @alt_names
-[alt_names]
-DNS.1 = home
-DNS.2 = *.home
-DNS.3 = *.pearl.lab
+basicConstraints				= critical,CA:true
+subjectKeyIdentifier			= hash
+authorityKeyIdentifier			= keyid:isuser
 EOT
 # authorityKeyIdentifier get error
 # if authorityKeyIdentifier = keyid:always
 # ref https://stackoverflow.com/questions/19163484/adding-authoritykeyidentifier-to-a-certrequest
 
 echo "Self-sign the root CA..."
-openssl req -new -x509 -days 3650 -config $CONFIG -key ca.key -out ca.crt # -extensions v3_req
+openssl req -new -x509 -days 3650 -config $CONFIG -key ca.key -out ca.crt
 
 rm -f $CONFIG
