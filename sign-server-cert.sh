@@ -69,9 +69,7 @@ emailAddress            = optional
 subjectAltName          = @alt_names
 
 [alt_names]
-DNS.1 = home
-DNS.3 = *.home
-DNS.4 = test.home
+DNS.1 = *.pearl.lab
 # IP.1 = 0.0.0.0
 EOT
 # server_cert
