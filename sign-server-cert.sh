@@ -69,7 +69,7 @@ emailAddress            = optional
 subjectAltName          = @alt_names
 
 [alt_names]
-DNS.1 = *.pearl.lab
+DNS.1 = *.lab.test.ncnu.org
 # IP.1 = 0.0.0.0
 EOT
 # server_cert
