@@ -5,7 +5,8 @@
 ##
 
 # Create the key. This should be done once per cert.
-CERT=$1
+HOST=$1
+CERT=$HOST
 if [ $# -ne 1 ]; then
         echo "Usage: $0 <www.domain.com>"
         exit 1
@@ -23,26 +24,26 @@ cat >$CONFIG <<EOT
 default_bits					= 4096
 default_keyfile					= server.key
 distinguished_name				= req_distinguished_name
-string_mask						= nombstr
+string_mask					= nombstr
 
 [ req_distinguished_name ]
-countryName						= Country Name (2 letter code)
+countryName					= Country Name (2 letter code)
 countryName_default				= TW
 countryName_min					= 2
 countryName_max					= 2
 stateOrProvinceName				= State or Province Name (full name)
-stateOrProvinceName_default		= Taiwan
+stateOrProvinceName_default			= Taiwan
 localityName					= Locality Name (eg, city)
-localityName_default			= Puli
+localityName_default				= Hsinchu
 0.organizationName				= Organization Name (eg, company)
-0.organizationName_default		= Nation Chi Nan University
-organizationalUnitName			= Organizational Unit Name (eg, section)
-organizationalUnitName_default	= Pearl Lab
-commonName						= Common Name (eg, www.domain.com)
-commonName_default				= lab.test.ncnu.org
+0.organizationName_default			= Cai-Sian Jhuang's homelab
+organizationalUnitName				= Organizational Unit Name (eg, section)
+organizationalUnitName_default			= homelab-1
+commonName					= Common Name (eg, www.domain.com)
+commonName_default				= $HOST
 commonName_max					= 64
 emailAddress					= Email Address
-emailAddress_default    		= efficacy38@gmail.com
+emailAddress_default    			= efficacy38@gmail.com
 emailAddress_max				= 40
 EOT
 

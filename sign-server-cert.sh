@@ -69,7 +69,7 @@ emailAddress            = optional
 subjectAltName          = @alt_names
 
 [alt_names]
-DNS.1 = *.lab.test.ncnu.org
+DNS.1 = $CERT
 # IP.1 = 0.0.0.0
 EOT
 # server_cert
